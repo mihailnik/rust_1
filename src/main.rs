@@ -1,40 +1,12 @@
-use std::{io, };
-
-const C: f32 = 32.0;
-
-fn c_to_f(celsius_temp: f32) -> f32 {
-    (celsius_temp * (9.0 / 5.0)) + C
-}
-
-fn f_to_c(fahrenheit_temp: f32) -> f32 {
-    (fahrenheit_temp - C) * (5.0 / 9.0)
-}
-
-fn convert(temperature: f32, choice: &str) -> Option<f32> {
-    match choice {
-        "cf" => Some(c_to_f(temperature)),
-        "fc" => Some(f_to_c(temperature)),
-        _ => None,
-    }
-}
+use std::io;
 
 fn main() {
-    println!("Temperature converter. \n (cf) C to F \n (fc) F to C");
-    let mut user_choice: String = String::new();
-    io::stdin().read_line(&mut user_choice).unwrap();
-    let n_choice = user_choice
-        .trim();
-        //.parse::<u8>()
-        //.expect("Please type a number!");
-    println!("Enter temperature:");
-    let mut temperature = String::new();
-    io::stdin().read_line(&mut temperature).unwrap();
-    let temperature = temperature
-        .trim()
-        .parse::<f32>()
-        .expect("Please type a number!");
-    match convert(temperature, n_choice) {
-        Some(result) => println!("The result of conversion is:{result}"),
-        None => println!("Unknown conversion requested!"),
-    }
+    println!("Guess the nummer!");
+    println!("Please input your guess: ");
+    let mut guess: String = String::new();
+    let mut guess_input_not_valid: String = String::new();
+    io::stdin()
+        .read_line(&mut guess)
+        .expect(&mut guess_input_not_valid);
+    print!("You guessed: {}", guess);
 }
